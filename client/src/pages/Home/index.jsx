@@ -1,11 +1,8 @@
-import React from "react"
-import PersonalData from "./components/PersonalData/index";
-import Account from "./components/Account";
+import React from "react";
 
 const Home = () => {
   return <>
-    <PersonalData/>
-    <Account/>
+    <div>Home page</div>
   </>
 }
 

@@ -9,34 +9,15 @@ const routes = [
   {
     isPublic: true,
     exact: true,
-    path: "/login",
+    path: "/",
     component: lazy(() => import("@pages/Auth/LogIn")),
   },
   {
-    isPublic: true,
-    exact: true,
-    path: "/signup",
-    component: lazy(() => import("@pages/Auth/SignUp")),
-  },
-  {
     isPublic: false,
     exact: true,
-    path: "/transaction",
-    component: lazy(() => import("@pages/Transaction")),
-  },
-  {
-    isPublic: false,
-    exact: true,
-    path: "/",
+    path: "/home",
     component: lazy(() => import("@pages/Home")),
-  },
-  {
-    isPublic: false,
-    isAdminRoute: true,
-    exact: true,
-    path: "/admin",
-    component: lazy(() => import("@pages/Admin")),
-  },
+  }
 ]
 
 const AppContainer = () => {
@@ -59,4 +40,4 @@ const AppContainer = () => {
   )
 }
 
-export default AppContainer
+export default AppContainer;
