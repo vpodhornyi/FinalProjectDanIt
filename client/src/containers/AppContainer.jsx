@@ -1,16 +1,15 @@
-import React, { lazy, Suspense, useMemo } from "react"
-import { useSelector } from "react-redux"
-import { Switch } from "react-router-dom"
-
-import { PageLoader, Preloader } from "@components/Loader"
-import PrivateRoute from "@components/PrivateRoute"
+import React, { lazy, Suspense, useMemo } from "react";
+import { useSelector } from "react-redux";
+import { Switch } from "react-router-dom";
+import { PageLoader, Preloader } from "@components/Loader";
+import PrivateRoute from "@components/PrivateRoute";
 
 const routes = [
   {
     isPublic: true,
     exact: true,
     path: "/",
-    component: lazy(() => import("@pages/Auth/LogIn")),
+    component: lazy(() => import("@pages/Auth")),
   },
   {
     isPublic: false,

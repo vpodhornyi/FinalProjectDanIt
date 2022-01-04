@@ -5,21 +5,16 @@ import App from "@containers/AppContainer";
 import store from '../src/redux/store';
 import {HashRouter as Router} from "react-router-dom";
 import 'antd/dist/antd.css';
-import {Layout} from "antd";
-import Container from "./components/Container";
+import Auth from "./pages/Auth";
 
 
 const reduxStore = store()
 
 ReactDOM.render(
-    <Provider store={reduxStore}>
-        <Router>
-            <Layout>
-                <Container>
-                    <App/>
-                </Container>
-            </Layout>
-        </Router>
-    </Provider>,
-    document.getElementById("root")
+  <Provider store={reduxStore}>
+    <Router>
+      <App/>
+    </Router>
+  </Provider>,
+  document.getElementById("root")
 )

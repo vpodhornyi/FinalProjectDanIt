@@ -5,16 +5,17 @@ import {useSelector} from "react-redux"
 const PrivateRoute = ({isPublic, isAdminRoute, ...route}) => {
   const {authorized, user: {isAdmin}} = useSelector((state) => state.auth)
 
-  if (isAdminRoute) {
-    return isAdmin ? <Route {...route} /> : <Redirect to="/"/>
-  }
+  // if (isAdminRoute) {
+  //   return isAdmin ? <Route {...route} /> : <Redirect to="/"/>
+  // }
 
-  if (isPublic) {
-    return <Route {...route} />
-  }
+  // if (isPublic) {
+  //   return <Route {...route} />
+  // }
 
 
-  return authorized ? <Route {...route} /> : <Redirect to="/"/>
+  // return authorized ? <Route {...route} /> : <Redirect to="/"/>
+  return <Route {...route} />
 }
 
 export default PrivateRoute
