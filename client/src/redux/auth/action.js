@@ -1,7 +1,6 @@
 import {createActions} from '../utils'
 import api, {URLS} from "@service/API"
-import {catchError, getTokens, setAuthToken, setRefreshToken, successToastMessage} from "../../utils";
-import {Transfer} from "antd";
+import {catchError, getTokens, setAuthToken, setRefreshToken} from "../../utils";
 
 const actions = createActions(
     {
@@ -21,7 +20,7 @@ export const ACTIONS = {
 const logOut = () => (dispatch) => {
     api.get(URLS.USER.LOG_OUT)
         .then(()=>{
-            successToastMessage("Successfully logged out!")
+            // successToastMessage("Successfully logged out!")
         })
     setAuthToken()
     setRefreshToken()
@@ -34,7 +33,7 @@ const logIn = (values) => (dispatch) => {
     api
         .post(URLS.USER.LOG_IN, values)
         .then((data) => {
-            successToastMessage("Successfully logged in!")
+            // successToastMessage("Successfully logged in!")
             setAuthToken(data.jwt)
             setRefreshToken(data.refreshToken)
             dispatch(ACTIONS.login.success(data.user))
@@ -51,7 +50,7 @@ const signUp = (values) => (dispatch) => {
     api
         .post(URLS.USER.SIGN_UP, values)
         .then((data) => {
-            successToastMessage("Successfully signed up!")
+            // successToastMessage("Successfully signed up!")
             setAuthToken(data.jwt)
             setRefreshToken(data.refreshToken)
             dispatch(ACTIONS.signup.success(data.user))
@@ -68,7 +67,7 @@ const topUp = (values) => (dispatch) => {
     api
         .put(URLS.ACCOUNT.TOP_UP, values)
         .then((data) => {
-            successToastMessage("Successfully top up!")
+            // successToastMessage("Successfully top up!")
             dispatch(ACTIONS.topup.success(data))
         })
         .catch((err) => {
@@ -83,27 +82,12 @@ const changecurrency = (values) => (dispatch) => {
     api
         .put(URLS.ACCOUNT.CHANGE_CURRENCY, values)
         .then((data) => {
-            successToastMessage("Successfully change currency!")
+            // successToastMessage("Successfully change currency!")
             dispatch(ACTIONS.changecurrency.success(data))
         })
         .catch((err) => {
             catchError(err)
             dispatch(ACTIONS.changecurrency.fail())
-        })
-}
-
-const transfer = (values) => (dispatch) => {
-    dispatch(ACTIONS.transfer.request())
-
-    api
-        .put(URLS.ACCOUNT.TRANSFER, values)
-        .then((data) => {
-            successToastMessage("Successfully transfer!")
-            dispatch(ACTIONS.transfer.success(data))
-        })
-        .catch((err) => {
-            catchError(err)
-            dispatch(ACTIONS.transfer.fail())
         })
 }
 
@@ -113,7 +97,7 @@ const createAccount = (values) => (dispatch) => {
     api
         .post(URLS.ACCOUNT._ROOT, values)
         .then((data) => {
-            successToastMessage("Successfully create account!")
+            // successToastMessage("Successfully create account!")
             dispatch(ACTIONS.createaccount.success(data))
         })
         .catch((err) => {
@@ -134,7 +118,7 @@ const fetchProfile = () => (dispatch) => {
             },
         })
         .then((data) => {
-            successToastMessage("Welcome back!")
+            // successToastMessage("Welcome back!")
             dispatch(ACTIONS.login.success(data))
         })
         .catch((err) => {
@@ -147,7 +131,6 @@ export const API_ACTIONS = {
     logIn,
     signUp,
     logOut,
-    transfer,
     fetchProfile,
     createAccount,
     topUp,

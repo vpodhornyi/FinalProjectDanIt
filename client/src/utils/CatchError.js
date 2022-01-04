@@ -1,4 +1,4 @@
-import { notification } from "antd"
+
 
 export const catchError = (e) => {
   if (e?.response?.data?.message) {
@@ -6,13 +6,9 @@ export const catchError = (e) => {
 
     message.forEach((i) => {
       const { msg } = i
-      notification.error({
-        message: msg,
-      })
+
     })
   } else {
-    notification.error({
-      message: "Something went wrong",
-    })
+
   }
 }

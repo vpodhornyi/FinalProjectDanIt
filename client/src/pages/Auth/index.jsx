@@ -15,7 +15,7 @@ const WIDTH_BUTTON_CONTAINER = '300px';
 const CUSTOM_BUTTON_SING_UP_WITH_GOOGLE_STYLE = `
     background-color: #fff;
     color: #000;
-    border: 2px solid #DDDFE2;
+    border: 1px solid #DDDFE2;
       &:hover {
         background-color: #DBE7F0;
     }`;
@@ -31,7 +31,7 @@ const CUSTOM_BUTTON_SING_UP_WITH_EMAIL_NAME = 'Sing up with email';
 const CUSTOM_BUTTON_SING_IN_STYLE = `
     background-color: #fff;
     color: #1D9BF0;
-    border: 2px solid #DDDFE2;
+    border: 1px solid #DDDFE2;
       &:hover {
         background-color: #DBE7F0;
     }`;
@@ -50,7 +50,7 @@ export default () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-        <Grid container sx={{pl: 3, pb: 10}}>
+        <Grid container sx={{pl: 2, pb: 10}}>
           <Container>
             <TwitterIcon sx={{ fontSize: 50, color: MAIN_COLOR }}/>
             <Box sx={{
@@ -59,6 +59,7 @@ export default () => {
               fontSize: matches ? 42 : 82,
             }}>Happining now</Box>
             <Box sx={{
+              padding: '30px 0',
               fontFamily: 'Arial',
               fontWeight: 600,
               fontSize: matches ? 20 : 32,
