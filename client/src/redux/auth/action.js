@@ -106,7 +106,6 @@ const createAccount = (values) => (dispatch) => {
         })
 }
 
-
 const fetchProfile = () => (dispatch) => {
     const {accessToken} = getTokens()
     dispatch(ACTIONS.profile.request())
