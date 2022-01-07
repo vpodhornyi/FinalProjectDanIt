@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Switch } from "react-router-dom";
 import { PageLoader, Preloader } from "@components/Loader";
 import PrivateRoute from "@components/PrivateRoute";
+import DialogWindow from "@components/DialogWindow";
 
 const routes = [
   {
@@ -32,6 +33,7 @@ const AppContainer = () => {
   return (
     <>
       <Preloader loaded={!loading} />
+      <DialogWindow/>
       <Suspense fallback={<PageLoader loaded={!loading} />}>
         <Switch>{routeComponents}</Switch>
       </Suspense>

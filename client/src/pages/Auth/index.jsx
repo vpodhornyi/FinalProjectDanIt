@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useDispatch} from 'react-redux';
 import {styled} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -9,6 +10,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import CustomButton from '../../components/CustomButton';
 import OrLine from './components/OrLine';
+import {DIALOG_ACTIONS} from "@redux/dialog/action";
 
 const MAIN_COLOR = '#1D9BF0';
 const WIDTH_BUTTON_CONTAINER = '300px';
@@ -38,13 +40,12 @@ const CUSTOM_BUTTON_SING_IN_STYLE = `
 const CUSTOM_BUTTON_SING_IN_NAME = 'Sing in';
 
 export default () => {
+  const dispatch = useDispatch();
+  const {openDialog} = DIALOG_ACTIONS;
   const matches = useMediaQuery('(max-width:600px)');
 
   return (
-    <Grid
-      container
-      direction={'row-reverse'}
-    >
+    <Grid container direction={'row-reverse'}>
       <Grid item xs={12} md={6} sx={{
         display: 'flex',
         justifyContent: 'center',
@@ -52,7 +53,7 @@ export default () => {
       }}>
         <Grid container sx={{pl: 2, pb: 10}}>
           <Container>
-            <TwitterIcon sx={{ fontSize: 50, color: MAIN_COLOR }}/>
+            <TwitterIcon sx={{fontSize: 50, color: MAIN_COLOR}}/>
             <Box sx={{
               fontFamily: 'Arial',
               fontWeight: 600,
@@ -68,7 +69,9 @@ export default () => {
               <Grid item xs={12}>
                 <CustomButton
                   customStyle={CUSTOM_BUTTON_SING_UP_WITH_GOOGLE_STYLE}
-                  name={CUSTOM_BUTTON_SING_UP_WITH_GOOGLE_NAME}/>
+                  name={CUSTOM_BUTTON_SING_UP_WITH_GOOGLE_NAME}
+                  onclickAction={() => openDialog()}
+                />
               </Grid>
               <Grid item xs={12}>
                 <OrLine/>
@@ -76,7 +79,9 @@ export default () => {
               <Grid item xs={12}>
                 <CustomButton
                   customStyle={CUSTOM_BUTTON_SING_UP_WITH_EMAIL_STYLE}
-                  name={CUSTOM_BUTTON_SING_UP_WITH_EMAIL_NAME}/>
+                  name={CUSTOM_BUTTON_SING_UP_WITH_EMAIL_NAME}
+                  onclickAction={() => openDialog()}
+                />
               </Grid>
               <Grid item xs={12}>
                 <Box sx={{
@@ -87,7 +92,9 @@ export default () => {
               <Grid item xs={12}>
                 <CustomButton
                   customStyle={CUSTOM_BUTTON_SING_IN_STYLE}
-                  name={CUSTOM_BUTTON_SING_IN_NAME}/>
+                  name={CUSTOM_BUTTON_SING_IN_NAME}
+                  onclickAction={() => openDialog()}
+                />
               </Grid>
             </Grid>
           </Container>
@@ -105,7 +112,8 @@ export default () => {
         }}>
           <TwitterIcon sx={{
             fontSize: matches ? 250 : 450,
-            color: '#fff' }}/>
+            color: '#fff'
+          }}/>
         </Box>
       </Grid>
     </Grid>
