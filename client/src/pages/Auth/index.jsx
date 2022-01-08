@@ -10,6 +10,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import CustomButton from '../../components/CustomButton';
 import OrLine from './components/OrLine';
+import SignUpFirstStep from './SignUp/FirstStep';
+import LogInFirstStep from './LogIn/FirstStep';
 import {DIALOG_ACTIONS} from "@redux/dialog/action";
 
 const MAIN_COLOR = '#1D9BF0';
@@ -80,7 +82,7 @@ export default () => {
                 <CustomButton
                   customStyle={CUSTOM_BUTTON_SING_UP_WITH_EMAIL_STYLE}
                   name={CUSTOM_BUTTON_SING_UP_WITH_EMAIL_NAME}
-                  onclickAction={() => openDialog()}
+                  onclickAction={() => openDialog(SignUpFirstStep)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -93,7 +95,7 @@ export default () => {
                 <CustomButton
                   customStyle={CUSTOM_BUTTON_SING_IN_STYLE}
                   name={CUSTOM_BUTTON_SING_IN_NAME}
-                  onclickAction={() => openDialog()}
+                  onclickAction={() => openDialog(LogInFirstStep)}
                 />
               </Grid>
             </Grid>

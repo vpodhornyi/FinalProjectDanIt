@@ -3,13 +3,16 @@ import {ACTIONS} from "./action";
 const INIT = {
   loading: false,
   open: false,
-  component: ''
+  Component: '',
+  props: {},
 }
 
 export default (state = INIT, action) => {
   const {payload, type} = action;
-  const {loading} = payload ? payload : {
+  const {loading, Component} = payload ? payload : {
     loading: false,
+    Component: '',
+    props: {},
   };
 
   switch (type) {
@@ -22,6 +25,7 @@ export default (state = INIT, action) => {
       return {
         ...state,
         open: true,
+        Component,
       }
     default:
       return state

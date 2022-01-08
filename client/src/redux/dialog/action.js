@@ -13,8 +13,8 @@ export const ACTIONS = {
   ...actions.actions,
 }
 
-const openDialog = () => dispatch => {
-  dispatch(ACTIONS.openDialog());
+const openDialog = (Component, props) => dispatch => {
+  dispatch(ACTIONS.openDialog({Component, props}));
 }
 
 const closeDialog = () => dispatch => {
