@@ -10,6 +10,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CloseIcon from '@mui/icons-material/Close';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import {useDispatch, useSelector} from 'react-redux';
 import {getDialogState, getDialogComponent} from "@redux/dialog/selector";
 import {DIALOG_ACTIONS} from "@redux/dialog/action";
@@ -21,13 +22,19 @@ export default function FormDialog() {
   const Component = useSelector(getDialogComponent);
   const dispatch = useDispatch();
   const {closeDialog} = DIALOG_ACTIONS;
+  const matches = useMediaQuery('(max-width:700px)');
+  const dialogStyle = matches ? {
+    style: {padding: '2px 15px', position: 'relative', height: '100%'}
+  } : {
+    style: {borderRadius: 15, padding: 2, position: 'relative', height: '70%'}
+  }
 
   return (
-    <Dialog PaperProps={{
-      style: {borderRadius: 15, padding: 2, position: 'relative', height: '70%'}
-    }}
-            open={open}
-            onClose={() => dispatch(closeDialog())}>
+    <Dialog
+      fullScreen={matches}
+      PaperProps={dialogStyle}
+      open={open}
+      onClose={() => dispatch(closeDialog())}>
       <Component/>
     </Dialog>
   );

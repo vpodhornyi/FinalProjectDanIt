@@ -9,11 +9,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
-import CustomButton from '../../../../components/CustomButton';
 import {DIALOG_ACTIONS} from "@redux/dialog/action";
+import CustomButton from '../../../../components/CustomButton';
+import SignUpSecondStep from '../SecondStep';
 
 const MAIN_COLOR = '#1D9BF0';
-const CUSTOM_BUTTON_NEXT = `
+const CUSTOM_BUTTON_NEXT_STYLE = `
     background-color: #000;
     color: #fff;
       &:hover {
@@ -23,7 +24,7 @@ const CUSTOM_BUTTON_NEXT_NAME = 'Next';
 
 export default () => {
   const dispatch = useDispatch();
-  const {closeDialog} = DIALOG_ACTIONS;
+  const {closeDialog, openDialog} = DIALOG_ACTIONS;
 
   return (
     <>
@@ -80,9 +81,9 @@ export default () => {
         <Box>
           <DialogContent>
             <CustomButton
-              customStyle={CUSTOM_BUTTON_NEXT}
+              customStyle={CUSTOM_BUTTON_NEXT_STYLE}
               name={CUSTOM_BUTTON_NEXT_NAME}
-              onclickAction={() => openDialog()}
+              onclickAction={() => openDialog(SignUpSecondStep)}
             />
           </DialogContent>
         </Box>
