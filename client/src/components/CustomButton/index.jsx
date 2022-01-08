@@ -6,7 +6,7 @@ import {useButton} from '@mui/base/ButtonUnstyled';
 import {styled} from '@mui/system';
 
 const CustomButtonRootF = style => styled('button')`
-  padding: 15px 15px;
+  padding: 10px 15px;
   border-radius: 30px;
   width: 100%;
   font-weight: 600;
