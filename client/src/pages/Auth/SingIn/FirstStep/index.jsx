@@ -12,6 +12,8 @@ import TextField from '@mui/material/TextField';
 import {DIALOG_ACTIONS} from "@redux/dialog/action";
 import OrLine from '../../components/OrLine';
 import CustomButton from '../../../../components/CustomButton';
+import SingInSecondStep from '../SecondStep';
+import ForgotPassword from '../ForgotPassword';
 
 const MAIN_COLOR = '#1D9BF0';
 const CUSTOM_BUTTON_SING_IN_WITH_GOOGLE_STYLE = `
@@ -29,21 +31,21 @@ const CUSTOM_BUTTON_NEXT_STYLE = `
         background-color: #444;
     }`;
 const CUSTOM_BUTTON_NEXT_NAME = 'Next';
-const CUSTOM_BUTTON_FOGOT_PASSWORD_STYLE = `
+const CUSTOM_BUTTON_FORGOT_PASSWORD_STYLE = `
     background-color: #fff;
     color: #000;
     border: 1px solid #DDDFE2;
       &:hover {
         background-color: #ddd;
     }`;
-const CUSTOM_BUTTON_FOGOT_PASSWORD_NAME = 'Fogot password?';
+const CUSTOM_BUTTON_FORGOT_PASSWORD_NAME = 'Forgot password?';
 
 export default () => {
   const dispatch = useDispatch();
   const {openDialog, closeDialog} = DIALOG_ACTIONS;
 
   return (
-    <Box sx={{padding: '0 100px', width: '400px'}}>
+    <Box sx={{padding: '0 100px', width: '400px', height: '100%',}}>
       <Box sx={{
         display: 'flex',
         justifyContent: 'center',
@@ -60,10 +62,10 @@ export default () => {
         <TwitterIcon sx={{fontSize: 40, color: MAIN_COLOR}}/>
       </Box>
       <Box sx={{
-        height: '100%',
+        height: '90%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
       }}>
         <Box>
           <DialogTitle sx={{pb: 7}}>Sign in to Twitter</DialogTitle>
@@ -87,14 +89,14 @@ export default () => {
               <CustomButton
                 customStyle={CUSTOM_BUTTON_NEXT_STYLE}
                 name={CUSTOM_BUTTON_NEXT_NAME}
-                onclickAction={() => openDialog()}
+                onclickAction={() => openDialog(SingInSecondStep)}
               />
             </Grid>
             <Grid item sx={{padding: '10px 0 30px 0'}}>
               <CustomButton
-                customStyle={CUSTOM_BUTTON_FOGOT_PASSWORD_STYLE}
-                name={CUSTOM_BUTTON_FOGOT_PASSWORD_NAME}
-                onclickAction={() => openDialog()}
+                customStyle={CUSTOM_BUTTON_FORGOT_PASSWORD_STYLE}
+                name={CUSTOM_BUTTON_FORGOT_PASSWORD_NAME}
+                onclickAction={() => openDialog(ForgotPassword)}
               />
             </Grid>
             <DialogContentText sx={{fontSize: 15, pt: 5}}>

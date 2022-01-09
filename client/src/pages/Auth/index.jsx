@@ -11,7 +11,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import CustomButton from '../../components/CustomButton';
 import OrLine from './components/OrLine';
 import SignUpFirstStep from './SignUp/FirstStep';
-import LogInFirstStep from './LogIn/FirstStep';
+import LogInFirstStep from './SingIn/FirstStep';
 import {DIALOG_ACTIONS} from "@redux/dialog/action";
 
 const MAIN_COLOR = '#1D9BF0';
