@@ -11,6 +11,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CloseIcon from '@mui/icons-material/Close';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import CircularProgress from '@mui/material/CircularProgress';
 import {useDispatch, useSelector} from 'react-redux';
 import {getDialogState, getDialogComponent} from "@redux/dialog/selector";
 import {DIALOG_ACTIONS} from "@redux/dialog/action";
@@ -26,7 +27,7 @@ export default function FormDialog() {
   const dialogStyle = matches ? {
     style: {padding: '2px 15px', position: 'relative', height: '100%'}
   } : {
-    style: {borderRadius: 15, padding: 2, position: 'relative', height: '70%'}
+    style: {borderRadius: 15, padding: 2, position: 'relative', height: '70%', width: '600px'}
   }
 
   return (
@@ -35,7 +36,17 @@ export default function FormDialog() {
       PaperProps={dialogStyle}
       open={open}
       onClose={() => dispatch(closeDialog())}>
-      <Component/>
+      {loading ?
+        <Box sx={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
+          <CircularProgress/>
+        </Box>
+        : <Component/>}
     </Dialog>
   );
 }

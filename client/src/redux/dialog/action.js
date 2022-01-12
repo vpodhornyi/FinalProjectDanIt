@@ -2,7 +2,7 @@ import {createActions} from '../utils';
 
 const actions = createActions(
   {
-    actions: ['OPEN_DIALOG', 'CLOSE_DIALOG'],
+    actions: ['OPEN_DIALOG', 'CLOSE_DIALOG', 'START_LOADING', 'END_LOADING'],
   },
   {
     prefix: 'dialog',
@@ -21,7 +21,17 @@ const closeDialog = () => dispatch => {
   dispatch(ACTIONS.closeDialog());
 }
 
+const startLoading = () => dispatch => {
+  dispatch(ACTIONS.startLoading());
+}
+
+const endLoading = () => dispatch => {
+  dispatch(ACTIONS.endLoading());
+}
+
 export const DIALOG_ACTIONS = {
   openDialog,
   closeDialog,
+  startLoading,
+  endLoading,
 }
