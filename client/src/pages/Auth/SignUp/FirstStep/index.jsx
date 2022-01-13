@@ -8,10 +8,13 @@ import Box from '@mui/material/Box';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
-import {DIALOG_ACTIONS} from "@redux/dialog/action";
 import CustomButton from '../../../../components/CustomButton';
 import SignUpSecondStep from '../SecondStep';
 import DateOfBirth from '../../components/DateOfBirth';
+import {DIALOG_ACTIONS} from "@redux/dialog/action";
+import {SING_UP_ACTIONS} from "@redux/auth/singUp/action";
+import {isNotNext} from "@redux/auth/singUp/selector";
+import {getName, getEmail} from "@redux/auth/singUp/selector";
 
 const MAIN_COLOR = '#1D9BF0';
 const CUSTOM_BUTTON_NEXT_STYLE = `
@@ -25,6 +28,10 @@ const CUSTOM_BUTTON_NEXT_NAME = 'Next';
 export default () => {
   const dispatch = useDispatch();
   const {closeDialog, openDialog} = DIALOG_ACTIONS;
+  const {setName, setEmail} = SING_UP_ACTIONS;
+  const isNotNextFirstStep = useSelector(isNotNext);
+  const name = useSelector(getName);
+  const email = useSelector(getEmail);
 
   return (
     <>
@@ -54,10 +61,22 @@ export default () => {
           <DialogContent>
             <Grid>
               <Grid item xs={12} sx={{padding: '10px 0'}}>
-                <TextField sx={{width: '100%'}} id="name" label="Name" variant="outlined"/>
+                <TextField
+                  onChange={(v) => dispatch(setName(v.target.value))}
+                  value={name}
+                  sx={{width: '100%'}}
+                  id="name"
+                  label="Name"
+                  variant="outlined"/>
               </Grid>
               <Grid item sx={{padding: '10px 0'}}>
-                <TextField id="email" sx={{width: '100%'}} label="Email" variant="outlined"/>
+                <TextField
+                  onChange={(v) => dispatch(setEmail(v.target.value))}
+                  value={email}
+                  id="email"
+                  sx={{width: '100%'}}
+                  label="Email"
+                  variant="outlined"/>
               </Grid>
             </Grid>
             <DateOfBirth/>
@@ -66,6 +85,7 @@ export default () => {
         <Box>
           <DialogContent>
             <CustomButton
+              disabled={isNotNextFirstStep}
               customStyle={CUSTOM_BUTTON_NEXT_STYLE}
               name={CUSTOM_BUTTON_NEXT_NAME}
               onclickAction={() => openDialog(SignUpSecondStep)}

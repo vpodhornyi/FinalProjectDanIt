@@ -10,8 +10,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 import {DIALOG_ACTIONS} from "@redux/dialog/action";
+import {AUTH_ACTIONS} from "@redux/auth/action";
 import CustomButton from '../../../../components/CustomButton';
 import SignUpFirstStep from '../FirstStep';
+import {getName, getEmail} from "@redux/auth/singUp/selector";
 
 const MAIN_COLOR = '#1D9BF0';
 const CUSTOM_BUTTON_Sing_UP_STYLE = `
@@ -25,6 +27,9 @@ const CUSTOM_BUTTON_Sing_UP_NAME = 'Sing up';
 export default () => {
   const dispatch = useDispatch();
   const {openDialog} = DIALOG_ACTIONS;
+  const {signUp} = AUTH_ACTIONS;
+  const name = useSelector(getName);
+  const email = useSelector(getEmail);
 
   return (
     <>
@@ -55,10 +60,22 @@ export default () => {
           <DialogContent>
             <Grid>
               <Grid item xs={12} sx={{padding: '10px 0'}}>
-                <TextField sx={{width: '100%'}} id="name" label="Name" variant="outlined"/>
+                <TextField
+                  onClick={() => dispatch(openDialog(SignUpFirstStep))}
+                  value={name}
+                  sx={{width: '100%'}}
+                  id="name"
+                  label="Name"
+                  variant="outlined"/>
               </Grid>
               <Grid item sx={{padding: '10px 0'}}>
-                <TextField id="email" sx={{width: '100%'}} label="Email" variant="outlined"/>
+                <TextField
+                  onClick={() => dispatch(openDialog(SignUpFirstStep))}
+                  value={email}
+                  id="email"
+                  sx={{width: '100%'}}
+                  label="Email"
+                  variant="outlined"/>
               </Grid>
               <Grid item sx={{padding: '10px 0'}}>
                 <TextField id="birthDate" sx={{width: '100%'}} label="Birth date" variant="outlined"/>
@@ -75,7 +92,7 @@ export default () => {
             <CustomButton
               customStyle={CUSTOM_BUTTON_Sing_UP_STYLE}
               name={CUSTOM_BUTTON_Sing_UP_NAME}
-              onclickAction={() => openDialog()}
+              onclickAction={() => signUp({name, email})}
             />
           </DialogContent>
         </Box>

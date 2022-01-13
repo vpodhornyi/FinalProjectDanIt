@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
+import clsx from 'clsx';
 import {useButton} from '@mui/base/ButtonUnstyled';
 import {styled} from '@mui/system';
 
@@ -14,6 +15,11 @@ const CustomButtonRootF = style => styled('button')`
   font-size: 14px;
   transition: all 200ms ease;
   cursor: pointer;
+  
+    &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
  
   ${style}
 `;
@@ -25,9 +31,12 @@ const CustomButton = React.forwardRef(function CustomButton(props, ref) {
     ref,
     component: CustomButtonRoot,
   });
+  const classes = {
+    disabled,
+  };
 
   return (
-    <CustomButtonRoot {...getRootProps()}>
+    <CustomButtonRoot {...getRootProps()} className={clsx(classes)}>
       {children}
     </CustomButtonRoot>
   );
@@ -39,10 +48,11 @@ CustomButton.propTypes = {
 
 export default function UseButton(props) {
   const dispatch = useDispatch();
-  const {name, customStyle, onclickAction} = props;
+  const {name, customStyle, onclickAction, disabled} = props;
   const CustomButtonRoot = CustomButtonRootF(customStyle);
-  
+
   return <CustomButton
+    disabled={disabled}
     onClick={() => dispatch(onclickAction())}
     CustomButtonRoot={CustomButtonRoot}>{name}</CustomButton>
 }
