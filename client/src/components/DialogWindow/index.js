@@ -27,7 +27,7 @@ export default function FormDialog() {
   const dialogStyle = matches ? {
     style: {padding: '2px 15px', position: 'relative', height: '100%'}
   } : {
-    style: {borderRadius: 15, padding: 2, position: 'relative', height: '70%', width: '600px'}
+    style: {borderRadius: 15, padding: 2, position: 'relative', height: '60%', width: '600px'}
   }
 
   return (
