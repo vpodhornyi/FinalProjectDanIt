@@ -1,0 +1,21 @@
+name: reviewdog
+on: [pull_request]
+jobs:
+
+  checkstyle_job:
+    runs-on: ubuntu-latest
+    name: Checkstyle job
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Run check style
+      uses: nikitasavinov/checkstyle-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        reporter: 'github-pr-check'
+        tool_name: 'reviewdog'
+        checkstyle_config: './checkstyle_config.xml'
+        checkstyle_version: '9.2.1'
+        workdir: './src/main/java'
+        level: 'warning'
+          
