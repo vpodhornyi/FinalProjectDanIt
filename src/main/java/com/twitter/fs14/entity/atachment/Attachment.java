@@ -6,10 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -22,7 +19,7 @@ public class Attachment extends BaseEntity {
     private AttachmentType type;
     private String url;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "tweet_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Tweet tweet;

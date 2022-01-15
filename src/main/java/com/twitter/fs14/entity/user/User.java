@@ -76,15 +76,9 @@ public class User extends BaseEntity {
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "bookmarks",
-            joinColumns = @JoinColumn(name = "user"),
-            inverseJoinColumns = @JoinColumn(name = "tweet"))
     private Set<Tweet> bookmarks;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "likes",
-            joinColumns = @JoinColumn(name = "user"),
-            inverseJoinColumns = @JoinColumn(name = "tweet"))
     private Set<Tweet> likes;
 }

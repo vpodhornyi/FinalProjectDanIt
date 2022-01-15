@@ -28,5 +28,4 @@ public class Reply extends BaseEntity {
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
-
 }

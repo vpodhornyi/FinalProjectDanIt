@@ -30,19 +30,8 @@ public class Tweet extends BaseEntity {
 
     @LazyCollection(LazyCollectionOption.EXTRA)
     @ManyToOne
-    @JoinTable(name = "tweets_children",
-            joinColumns = @JoinColumn(name = "parentTweet"),
-            inverseJoinColumns = @JoinColumn(name = "childTweet"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Tweet parentTweet;
-
-
-    @LazyCollection(LazyCollectionOption.EXTRA)
-    @OneToMany
-    @JoinTable(name = "tweets_children",
-            joinColumns = @JoinColumn(name = "childTweet"),
-            inverseJoinColumns = @JoinColumn(name = "parentTweet"))
-    private Set<Tweet> childTweet;
 
     @LazyCollection(LazyCollectionOption.EXTRA)
     @OneToMany
@@ -50,17 +39,11 @@ public class Tweet extends BaseEntity {
 
     @JsonIgnore
     @ManyToOne
-    @JoinTable(name = "bookmarks",
-            joinColumns = @JoinColumn(name = "tweet"),
-            inverseJoinColumns = @JoinColumn(name = "user"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Tweet bookmark;
 
     @JsonIgnore
     @ManyToOne
-    @JoinTable(name = "likes",
-            joinColumns = @JoinColumn(name = "tweet"),
-            inverseJoinColumns = @JoinColumn(name = "user"))
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Tweet like;
 
