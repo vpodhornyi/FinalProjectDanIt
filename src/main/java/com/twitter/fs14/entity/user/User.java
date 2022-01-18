@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.twitter.fs14.entity.BaseEntity;
 import com.twitter.fs14.entity.chat.Chat;
 import com.twitter.fs14.entity.chat.Message;
+import com.twitter.fs14.entity.notification.Notification;
+import com.twitter.fs14.entity.reply.Reply;
+import com.twitter.fs14.entity.tweet.Tweet;
 import lombok.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -53,9 +56,29 @@ public class User extends BaseEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "sender", fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<Message> messages;
+    private Set<Message> messages;
 
     @JsonIgnore
-    @ManyToMany
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Notification> notifications;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Tweet> tweets;
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Chat> chats;
+
+    @JsonIgnore
+    @OneToMany
+    private List<Reply> replies;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Tweet> bookmarks;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Tweet> likes;
 }
